@@ -1,7 +1,9 @@
 package com.wanggang.alibaba.contorller;
 
+import com.wanggang.alibaba.entity.User;
 import com.wanggang.alibaba.result.CommonResult;
 import com.wanggang.alibaba.result.StatusCode;
+import com.wanggang.alibaba.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +31,23 @@ public class UserContorller {
     @Resource
     private RestTemplate restTemplate;
 
+    @Resource
+    private UserService userService;
+
     @GetMapping(value = "/user/getOrderByIdToOrder/{id}")
     public CommonResult<String> getOrderByIdToOrder(@PathVariable("id") long id){
         String str = serverUrl + "/order/getOrderInfoById/" +id;
         log.info(str);
         ResponseEntity<String> entity = restTemplate.getForEntity(str, String.class);
         return new CommonResult<String>(entity.getBody(),StatusCode.SUCCESS);
+    }
+
+    @GetMapping("/user/getUserInfoById/{id}")
+    public CommonResult<String> getUserInfoById(@PathVariable("id") long id){
+        User user = this.userService.getUserInfoById(id);
+        if (user != null)
+            return new CommonResult(user,StatusCode.SUCCESS);
+        return new CommonResult<>("没有查询结果返回！",StatusCode.FAIL);
     }
 
 }

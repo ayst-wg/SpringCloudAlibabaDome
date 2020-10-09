@@ -3,11 +3,15 @@ server:
 
 spring:
   application:
-    name: nacos-order-service
+    name: cloudalibaba-order-service
   cloud:
     nacos:
       discovery:
         server-addr: 192.168.0.106:8848  # 配置nacos服务地址
+    sentinel:
+      transport:
+        dashboard: 192.168.0.106:8080   # 配置sentinel服务地址
+        port: 8719
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -13,8 +13,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  **/
 @SpringBootApplication
 @EnableDiscoveryClient
-public class Order1001Application {
+public class Order8001Application {
     public static void main(String[] args) {
-        SpringApplication.run(Order1001Application.class,args);
+        SpringApplication.run(Order8001Application.class,args);
     }
 }

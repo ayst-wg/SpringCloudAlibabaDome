@@ -3,11 +3,15 @@ server:
 
 spring:
   application:
-    name: nacos-user-service
+    name: cloudalibaba-user-service
   cloud:
     nacos:
       discovery:
         server-addr: 192.168.0.106:8848  # 配置nacos服务地址
+    sentinel:
+      transport:
+        dashboard: 192.168.0.106:8080   # 配置sentinel服务地址
+        port: 8719
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,12 +23,11 @@ mybatis:
   type-aliases-package: com.wanggang.alibaba.entity
   mapper-locations: classpath*:mapper/*.xml
 
-management:
-  endpoint:
-    web:
-      exposure:
-        include: '*'
+#激活Sentinel对Feign的支持
+feign:
+  sentinel:
+    enabled: true
 
 service-url:
-  nacos-order-service: http://nacos-order-service
+  nacos-order-service: http://cloudalibaba-order-service
 
