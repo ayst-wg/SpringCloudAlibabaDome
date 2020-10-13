@@ -15,7 +15,9 @@
         <module>Cloud-Alibaba-Order-8002</module>
         <module>Cloud-Alibaba-Nacos-Config-Client-3377</module>
         <module>Cloud-Alibaba-Sentinel-8401</module>
-        <module>Cloud-Alibaba-User-Sentnel-1002</module>
+        <module>Cloud-Alibaba-Seata-Order8003</module>
+        <module>Cloud-Alibaba-Seata-Account8005</module>
+        <module>Cloud-Alibaba-Seata-Storage8004</module>
     </modules>
 
     <!-- 使用pom文件方式-->

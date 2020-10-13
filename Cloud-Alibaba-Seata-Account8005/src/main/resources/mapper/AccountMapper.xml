@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wanggang.alibaba.dao.AccountDao">
+
+    <resultMap id="baseResultMap" type="com.wanggang.alibaba.entity.Account">
+        <id column="id" property="id" jdbcType="bigint" />
+        <result column="user_id" property="userId" jdbcType="bigint" />
+        <result column="total" property="total" jdbcType="double" />
+        <result column="used" property="used" jdbcType="double" />
+        <result column="residue" property="residue" jdbcType="double" />
+    </resultMap>
+    
+    <select id="getAccountInfoById" parameterType="id" resultMap="baseResultMap" >
+        select * from t_account where  id = #{id};
+    </select>
+
+    <insert id="createAccount" parameterType="Account">
+        insert t_account (
+            user_id,total,used,residue
+        ) values (
+            #{user_id},#{total},#{used},#{residue}
+        )
+    </insert>
+
+    <update id="updateAccountPrice" parameterType="Account" >
+        update t_account set total = #{total},used = #{used},residue = #{residue} where id = #{id};
+    </update>
+</mapper>

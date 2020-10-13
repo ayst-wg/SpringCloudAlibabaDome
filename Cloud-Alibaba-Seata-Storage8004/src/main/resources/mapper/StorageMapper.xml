@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper>
+    <resultMap id="baseResultMap" type="com.wanggang.alibaba.entity.Storage">
+        <id column="id" property="id" jdbcType="bigint"/>
+        <id column="product_id" property="productId" jdbcType="bigint"/>
+        <id column="total" property="total" jdbcType="integer"/>
+        <id column="uesd" property="uesd" jdbcType="integer"/>
+        <id column="residue" property="residue" jdbcType="integer"/>
+    </resultMap>
+
+    <select id="getStorageInfoById" parameterType="id" resultMap="baseResultMap">
+        select * from t_storage where id = #{id};
+    </select>
+    
+    <insert id="createStorage" parameterType="Storage">
+        insert into t_storage(
+            product_id,
+            total,
+            uesd,
+            residue
+        ) values (
+            #{productId},
+            #{total},
+            #{uesd},
+            #{residue}
+        )
+    </insert>
+    
+    <update id="setStorageNum" parameterType="Storage">
+        update t_storage set
+            product_id = #{productId}
+            total = #{total}
+            uesd = #{uesd}
+            residue = #{residue}
+        where id = #{id}
+    </update>
+</mapper>

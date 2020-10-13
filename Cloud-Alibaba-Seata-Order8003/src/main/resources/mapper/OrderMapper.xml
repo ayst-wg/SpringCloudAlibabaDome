@@ -1,0 +1,25 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wanggang.alibaba.dao.OrderDao">
+    <resultMap id="baseResultMap" type="com.wanggang.alibaba.entity.SeataOrder">
+        <id column="id" property="id" jdbcType="bigint"/>
+        <id column="user_id" property="userId" jdbcType="bigint"/>
+        <id column="order_id" property="orderId" jdbcType="bigint"/>
+        <id column="product_id" property="productId" jdbcType="bigint"/>
+        <id column="count" property="count" jdbcType="integer"/>
+        <id column="price" property="price" jdbcType="decimal"/>
+        <id column="status" property="status" jdbcType="integer"/>
+    </resultMap>
+
+    <insert id="createOrder" parameterType="SeataOrder" >
+        insert into t_order(user_id,order_id,product_id,count,price,status) values (
+            #{userId},#{orderId},#{productId},#{count},#{price},#{status}
+        );
+    </insert>
+
+    <select id="getOrderInfoById" parameterType="id" resultMap="baseResultMap">
+        select * from t_order where  id = #{id};
+    </select>
+
+</mapper>
