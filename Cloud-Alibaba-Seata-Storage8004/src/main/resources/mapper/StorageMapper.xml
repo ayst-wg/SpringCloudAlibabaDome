@@ -1,26 +1,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper>
+<mapper namespace="com.wanggang.alibaba.dao.StorageDao">
     <resultMap id="baseResultMap" type="com.wanggang.alibaba.entity.Storage">
-        <id column="id" property="id" jdbcType="bigint"/>
-        <id column="product_id" property="productId" jdbcType="bigint"/>
-        <id column="total" property="total" jdbcType="integer"/>
-        <id column="uesd" property="uesd" jdbcType="integer"/>
-        <id column="residue" property="residue" jdbcType="integer"/>
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="product_id" property="productId" jdbcType="BIGINT"/>
+        <result column="total" property="total" jdbcType="INTEGER"/>
+        <result column="uesd" property="uesd" jdbcType="INTEGER"/>
+        <result column="residue" property="residue" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="getStorageInfoById" parameterType="id" resultMap="baseResultMap">
+    <select id="getStorageInfoById" parameterType="long" resultMap="baseResultMap">
         select * from t_storage where id = #{id};
     </select>
     
     <insert id="createStorage" parameterType="Storage">
         insert into t_storage(
+            id,
             product_id,
             total,
             uesd,
             residue
         ) values (
+            null,
             #{productId},
             #{total},
             #{uesd},

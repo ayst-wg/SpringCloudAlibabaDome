@@ -5,18 +5,18 @@
 <mapper namespace="com.wanggang.alibaba.dao.AccountDao">
 
     <resultMap id="baseResultMap" type="com.wanggang.alibaba.entity.Account">
-        <id column="id" property="id" jdbcType="bigint" />
-        <result column="user_id" property="userId" jdbcType="bigint" />
-        <result column="total" property="total" jdbcType="double" />
-        <result column="used" property="used" jdbcType="double" />
-        <result column="residue" property="residue" jdbcType="double" />
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="total" property="total" jdbcType="DECIMAL" />
+        <result column="used" property="used" jdbcType="DECIMAL" />
+        <result column="residue" property="residue" jdbcType="DECIMAL" />
     </resultMap>
     
-    <select id="getAccountInfoById" parameterType="id" resultMap="baseResultMap" >
+    <select id="getAccountInfoById" parameterType="long" resultMap="baseResultMap" >
         select * from t_account where  id = #{id};
     </select>
 
-    <insert id="createAccount" parameterType="Account">
+    <insert id="createAccount">
         insert t_account (
             user_id,total,used,residue
         ) values (
@@ -24,7 +24,7 @@
         )
     </insert>
 
-    <update id="updateAccountPrice" parameterType="Account" >
+    <update id="updateAccountPrice">
         update t_account set total = #{total},used = #{used},residue = #{residue} where id = #{id};
     </update>
 </mapper>

@@ -8,6 +8,7 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.0.106:8848
+        group: SEATA_GROUP
     alibaba:
       seata:
         # 自定义事务组名称需要与seata-server中的对应
@@ -15,9 +16,40 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.0.106:3306/seata-storage?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://192.168.0.106:3306/seata_storage?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: gwang
+
+seata:
+  enabled: true
+  tx-service-group: SEATA_GROUP	# my_test_tx_group改成config.text中自己的事务分组名称
+  enable-auto-data-source-proxy: false
+  service:
+    vgroup-mapping:
+      my_test_tx_group: SEATA_GROUP # my_test_tx_group改成config.text中自己的事务分组名称
+    grouplist:
+      default: 192.168.0.106:8091
+    enable-degrade: false
+    disable-global-transaction: false
+  config:
+    type: nacos
+    nacos:
+      namespace:
+      serverAddr: 192.168.0.106:8848
+      group: SEATA_GROUP
+      username: "nacos"
+      password: "nacos"
+      cluster: default
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 192.168.0.106:8848
+      group : SEATA_GROUP
+      namespace:
+      username: "nacos"
+      password: "nacos"
+      cluster: default
 
 mybatis:
   type-aliases-package: com.wanggang.alibaba.entity

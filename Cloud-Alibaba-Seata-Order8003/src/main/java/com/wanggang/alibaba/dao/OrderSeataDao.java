@@ -12,9 +12,11 @@ import org.apache.ibatis.annotations.Param;
  * @Version 1.0
  **/
 @Mapper
-public interface OrderDao {
+public interface OrderSeataDao {
 
     public void createOrder(SeataOrder order);
+
+    public void updateOrderStatus(@Param("id") long id, @Param("status") int status);
 
     public SeataOrder getOrderInfoById(@Param("id") long id);
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wanggang.alibaba.dao.OrderDao">
+<mapper namespace="com.wanggang.alibaba.dao.OrderSeataDao">
 
     <resultMap id="getOrderInfoByIdResultMap" type="com.wanggang.alibaba.entity.Order">
         <id column="id" property="id" jdbcType="BIGINT" />
