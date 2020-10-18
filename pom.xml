@@ -18,6 +18,7 @@
         <module>Cloud-Alibaba-Seata-Order8003</module>
         <module>Cloud-Alibaba-Seata-Account8005</module>
         <module>Cloud-Alibaba-Seata-Storage8004</module>
+        <module>Cloud-Alibaba-Redis6379</module>
     </modules>
 
     <!-- 使用pom文件方式-->
