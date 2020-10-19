@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @ClassName : RedisUtil
  * @Description : RedisUtil
- * @Author : Administrator
+ * @Author : gwang
  * @Date: 2020-10-18 19:19
  * @Version 1.0
  **/
