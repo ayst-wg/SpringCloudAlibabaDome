@@ -12,17 +12,21 @@
     <artifactId>Cloud-Alibaba-Redis6379</artifactId>
 
     <dependencies>
-        <!--redis-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
         <!-- 引用自己定义的api通用包 -->
         <dependency>
             <groupId>com.wanggang.springcloudalibaba</groupId>
             <artifactId>commons</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- lettuce pool -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
         </dependency>
         <!-- SpringCloud ailibaba nacos-->
         <dependency>
