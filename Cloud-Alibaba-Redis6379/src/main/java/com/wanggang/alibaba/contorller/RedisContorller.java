@@ -50,17 +50,30 @@ public class RedisContorller extends BaseContorller {
                 return new CommonResult("用户添加失败！", StatusCode.FAIL);
             case "update":
                 user = this.redisService.getUserById(id);
-                Scanner input = new Scanner(System.in);
-                String username = input.next();
-                int age = input.nextInt();
-                String address = input.next();
-                user.setUsername(username);
-                user.setAge(age);
-                user.setAddress(address);
-                result = this.redisService.update(user);
-                if (result != 0)
-                    return new CommonResult("用户 " + id + " 修改成功！" + user, StatusCode.SUCCESS);
-                return new CommonResult("没有用户id为：" + id + " 的用户记录，修改失败！", StatusCode.FAIL);
+                if (user != null){
+                    Scanner input = new Scanner(System.in);
+                    System.out.println("请输入修改的 name：");
+                    String username = input.nextLine();
+                    System.out.println("请输入修改的 age：");
+                    int age;
+                    age = input.nextInt();
+                    System.out.println("请输入修改的 address：");
+                    String address = input.next();
+                    while (true) {
+                        String line = input.nextLine();
+                        if (line.equalsIgnoreCase("Y")) break;
+                        System.out.println("开始执行吗？【Y/n】" + line);
+                    }
+                    user.setUsername(username);
+                    user.setAge(age);
+                    user.setAddress(address);
+                    result = this.redisService.update(user);
+                    if (result != 0)
+                        return new CommonResult("用户： " + id + " 修改成功！" + user, StatusCode.SUCCESS);
+                    return new CommonResult("用户： " + id + " 修改失败！", StatusCode.FAIL);
+                }else{
+                    return new CommonResult("没有用户id为：" + id + " 的用户记录，修改失败！", StatusCode.FAIL);
+                }
             case "delete":
                 result = this.redisService.delete(id);
                 if (result != 0)
